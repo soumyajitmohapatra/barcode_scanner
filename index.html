@@ -14,19 +14,20 @@
         #canvas {
             width: 100vw;
             height: 100vh;
+            margin: 0;
         }
 
         #video {
             width: 100vw;
             height: 100vh;
+            margin: 0;
         }
 
-        #start {
+        #capture {
             position: fixed;
             bottom: 26px;
             right: 153px;
             margin: 0;
-
         }
     </style>
 </head>
@@ -35,9 +36,10 @@
     <div style="height: 100vh;">
         <canvas id="canvas"></canvas>
         <video id="video" autoplay></video>
-        <button id="start">Capture</button>
+        <button id="capture">Capture</button>
     </div>
     <script src="./index.js" async></script>
 </body>
 
 </html>
+

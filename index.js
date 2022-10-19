@@ -1,58 +1,49 @@
-const captureBtn = document.querySelector("#start");
-const videoElem = document.querySelector("#video");
-const canvas = document.querySelector("#canvas");
-
 let stream;
-let capture = true;
 
+const videoElem = document.querySelector("#video");
+navigator.mediaDevices.enumerateDevices().then(async (devices) => {
+  let id = devices
+    .filter((device) => device.kind === "videoinput")
+    .slice(-1)
+    .pop().deviceId;
+  let constrains = {
+    video: {
+      optional: [{ sourceId: id }],
+    },
+  };
+
+  stream = await navigator.mediaDevices.getUserMedia(constrains);
+  videoElem.onplaying = () =>
+    console.log("video playing stream:", videoElem.srcObject);
+  videoElem.srcObject = stream;
+});
+const canvas = document.getElementById("canvas");
 canvas.style.display = "none";
+const capBtn = document.getElementById("capture");
 
-captureBtn.onclick = async () => {
-  if (capture) {
-    capture = false;
+capBtn.onclick = () => {
+  let capturer = new ImageCapture(stream.getVideoTracks()[0]);
+  step(capturer);
+  canvas
+    .getContext("2d")
+    .drawImage(videoElem, 0, 0, canvas.width, canvas.height);
 
-    canvas.style.display = "none";
-    videoElem.style.display = "block";
-
-    navigator.mediaDevices.enumerateDevices().then(async (devices) => {
-      let id = devices
-        .filter((device) => device.kind === "videoinput")
-        .slice(-1)
-        .pop().deviceId;
-      let constrains = {
-        audio: false,
-        video: {
-          optional: [{ sourceId: id }],
-          facingMode: "environment",
-        },
-      };
-
-      stream = await navigator.mediaDevices.getUserMedia(constrains);
-      videoElem.onplaying = () =>
-        console.log("video playing stream:", videoElem.srcObject);
-      videoElem.srcObject = stream;
-    });
-  } else {
-    capture = true;
-    canvas.style.display = "block";
-    videoElem.style.display = "none";
-    canvas.getContext("2d").drawImage(video, 0, 0, canvas.width, canvas.height);
-    //====================///
+  canvas.style.display = "block";
+  videoElem.style.display = "none";
+};
+function step(capturer) {
+  capturer.grabFrame().then((bitmap) => {
     const barcodeDetector = new BarcodeDetector();
     barcodeDetector
-      .detect(canvas)
+      .detect(bitmap)
       .then((barcodes) => {
         barcodes.forEach((barcode) => {
           alert(barcode.rawValue);
         });
       })
       .catch((e) => {
-        alert(e.message);
+        console.error(e);
+        document.getElementById("barcodes").innerHTML = "None";
       });
-
-    //====================///
-
-    // close the camera
-    stream.getTracks().forEach((track) => track.stop());
-  }
-};
+  });
+}
