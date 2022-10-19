@@ -1,35 +1,51 @@
 let stream;
-
+let capturing = true;
 const videoElem = document.querySelector("#video");
-navigator.mediaDevices.enumerateDevices().then(async (devices) => {
-  let id = devices
-    .filter((device) => device.kind === "videoinput")
-    .slice(-1)
-    .pop().deviceId;
-  let constrains = {
-    video: {
-      optional: [{ sourceId: id }],
-    },
-  };
-
-  stream = await navigator.mediaDevices.getUserMedia(constrains);
-  videoElem.onplaying = () =>
-    console.log("video playing stream:", videoElem.srcObject);
-  videoElem.srcObject = stream;
-});
-const canvas = document.getElementById("canvas");
-canvas.style.display = "none";
 const capBtn = document.getElementById("capture");
 
-capBtn.onclick = () => {
-  let capturer = new ImageCapture(stream.getVideoTracks()[0]);
-  step(capturer);
-  canvas
-    .getContext("2d")
-    .drawImage(videoElem, 0, 0, canvas.width, canvas.height);
+const canvas = document.getElementById("canvas");
+canvas.style.display = "none";
 
-  canvas.style.display = "block";
-  videoElem.style.display = "none";
+const startVideo = () => {
+  capturing = false;
+  canvas.style.display = "none";
+  videoElem.style.display = "block";
+  navigator.mediaDevices.enumerateDevices().then(async (devices) => {
+    let id = devices
+      .filter((device) => device.kind === "videoinput")
+      .slice(-1)
+      .pop().deviceId;
+    let constrains = {
+      video: {
+        optional: [{ sourceId: id }],
+      },
+    };
+
+    stream = await navigator.mediaDevices.getUserMedia(constrains);
+    videoElem.onplaying = () =>
+      console.log("video playing stream:", videoElem.srcObject);
+    videoElem.srcObject = stream;
+  });
+};
+startVideo();
+
+capBtn.onclick = () => {
+  if (capturing) {
+    startVideo();
+  } else {
+    capturing = true;
+    canvas.style.display = "block";
+    videoElem.style.display = "none";
+    let capturer = new ImageCapture(stream.getVideoTracks()[0]);
+    step(capturer);
+    canvas
+      .getContext("2d")
+      .drawImage(videoElem, 0, 0, canvas.width, canvas.height);
+
+    canvas.style.display = "block";
+    videoElem.style.display = "none";
+    stream.getTracks().forEach((track) => track.stop());
+  }
 };
 function step(capturer) {
   capturer.grabFrame().then((bitmap) => {
