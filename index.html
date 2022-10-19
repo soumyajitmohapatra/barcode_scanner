@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>BARCODE SCANNER APP</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+        body {
+            margin: 0;
+        }
+
+        #canvas {
+            width: 100vw;
+            height: 100vh;
+        }
+
+        #video {
+            width: 100vw;
+            height: 100vh;
+        }
+
+        #start {
+            position: fixed;
+            bottom: 26px;
+            right: 153px;
+            margin: 0;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div style="height: 100vh;">
+        <canvas id="canvas"></canvas>
+        <video id="video" autoplay></video>
+        <button id="start">Click Photo</button>
+    </div>
+    <script src="./index.js" async></script>
+</body>
+
+</html>
