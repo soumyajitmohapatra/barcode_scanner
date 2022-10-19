@@ -31,11 +31,14 @@ startVideo();
 
 capBtn.onclick = () => {
   if (capturing) {
-    startVideo();
+    window.location.reload();
+    capBtn.value = "RECAPTURE";
   } else {
     capturing = true;
     canvas.style.display = "block";
     videoElem.style.display = "none";
+    capBtn.value = "RECAPTURE";
+
     let capturer = new ImageCapture(stream.getVideoTracks()[0]);
     step(capturer);
     canvas
