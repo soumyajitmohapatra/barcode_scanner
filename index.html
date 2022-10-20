@@ -37,18 +37,16 @@
 
         #capture {
             position: fixed;
-            bottom: 26px;
-            right: 135px;
             margin: 0;
-            height: 90px;
-            width: 90px;
+            height: 80px;
+            width: 80px;
             transition: all 0.25s ease;
             border-radius: 50%;
-            background: rgba(0, 0, 0, 0.39);
+            background: rgba(0, 0, 0, 0.3);
             box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-            backdrop-filter: blur(4px);
+            backdrop-filter: blur(14px);
             -webkit-backdrop-filter: blur(4px);
-            border: 8px solid rgba(36, 36, 36, 0.18);
+            border: 5px solid rgba(36, 36, 36, 0.58);
         }
 
         @keyframes fadein {
@@ -97,8 +95,7 @@
             color: #000;
             text-decoration: none;
             cursor: pointer;
-        }   
-        
+        }
     </style>
 </head>
 
@@ -109,7 +106,10 @@
             <video id="video" autoplay></video>
         </div>
 
-        <button id="capture"></button>
+        <div style="display: flex;align-items: center;justify-content: center;position: relative;
+        bottom: 4rem;">
+            <button id="capture"></button>
+        </div>
     </div>
     <div id="myModal" class="modal">
         <div class="modal-content">
