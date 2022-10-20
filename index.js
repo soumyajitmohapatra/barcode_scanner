@@ -32,12 +32,11 @@ startVideo();
 capBtn.onclick = () => {
   if (capturing) {
     window.location.reload();
-    capBtn.value = "RECAPTURE";
   } else {
     capturing = true;
     canvas.style.display = "block";
     videoElem.style.display = "none";
-    capBtn.value = "RECAPTURE";
+    capBtn.innerHTML = "RECAPTURE";
 
     let capturer = new ImageCapture(stream.getVideoTracks()[0]);
     step(capturer);
@@ -51,6 +50,7 @@ capBtn.onclick = () => {
   }
 };
 function step(capturer) {
+  console.log(capturer);
   capturer.grabFrame().then((bitmap) => {
     const barcodeDetector = new BarcodeDetector();
     barcodeDetector
@@ -62,7 +62,7 @@ function step(capturer) {
       })
       .catch((e) => {
         console.error(e);
-        document.getElementById("barcodes").innerHTML = "None";
-      });
+      })
+      .finally(() => console.log("called"));
   });
 }
