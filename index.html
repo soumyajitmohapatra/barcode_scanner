@@ -17,14 +17,14 @@
         }
 
         #canvas {
-            width: 100vw;
-            height: 100vh;
+            min-width: 100vw;
+            min-height: 100vh;
             margin: 0;
         }
 
         #video {
-            width: 100vw;
-            height: 100vh;
+            min-width: 100vw;
+            min-height: 100vh;
             margin: 0;
         }
 
@@ -33,7 +33,18 @@
             bottom: 26px;
             right: 153px;
             margin: 0;
+            height: 90px;
+            width: 90px;
+            transition: all 0.25s ease;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.39);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            border: 8px solid rgba(36, 36, 36, 0.18);
         }
+
+
 
         /* The Modal (background) */
         .modal {
@@ -149,7 +160,8 @@
     <div style="height: 100vh;">
         <canvas id="canvas"></canvas>
         <video id="video" autoplay></video>
-        <button id="capture">CAPTURE</button>
+
+        <button id="capture"></button>
     </div>
     <div id="myModal" class="modal">
         <div class="modal-content">
