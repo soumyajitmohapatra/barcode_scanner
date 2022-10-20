@@ -152,7 +152,7 @@ function step(capturer) {
     );
     const barcodeDetector = new BarcodeDetector();
     barcodeDetector
-      .detect(capturer)
+      .detect(bitmap)
       .then((barcodes) => {
         barcodes.forEach((barcode) => {
           userData.find((ele) => {
