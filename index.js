@@ -105,7 +105,7 @@ capBtn.onclick = () => {
   step(capturer);
   canvas.style.display = "block";
   videoElem.style.display = "none";
-  capBtn.innerHTML = "RECAPTURE";
+  capBtn.innerHTML = "RECAPTUREs";
 };
 
 // Get the <span> element that closes the modal
