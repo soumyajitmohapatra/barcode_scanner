@@ -140,11 +140,11 @@ function step(capturer) {
   capturer.grabFrame().then((bitmap) => {
     let ctx = canvas.getContext("2d");
     ctx.drawImage(
-      bitmap,
+      videoElem,
       0,
       0,
-      bitmap.width,
-      bitmap.height,
+      videoElem.width,
+      videoElem.height,
       0,
       0,
       canvas.width,
