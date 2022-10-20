@@ -56,8 +56,11 @@ function step(capturer) {
       .detect(bitmap)
       .then((barcodes) => {
         barcodes.forEach((barcode) => {
-          alert(barcode.rawValue);
-          console.log(barcode.rawValue);
+          userData.find((ele) => {
+            ele.id == barcode.rawValue
+              ? openModal(ele)
+              : alert("no user found");
+          });
         });
         step(capturer);
       })
@@ -67,3 +70,42 @@ function step(capturer) {
       .finally(() => stream.getTracks().forEach((track) => track.stop()));
   });
 }
+
+//Modal
+const modal = document.getElementById("myModal");
+modal.style.display = "none";
+
+// Get the <span> element that closes the modal
+const close = document.getElementsByClassName("close")[0];
+
+const empName = document.getElementById("empName");
+const degi = document.getElementById("degi");
+const img = document.getElementById("img");
+const barcode = document.getElementById("barcode");
+
+const openModal = (modalData) => {
+  setTimeout(() => {
+    empName.innerHTML = `${modalData?.emp_name} (${modalData?.emp_id})`;
+    img.src = modalData?.profile_img;
+    barcode.src = modalData?.barcode;
+    degi.innerHTML = modalData?.designation;
+    modal.style.display = "block";
+  }, 2000);
+};
+
+close.onclick = function () {
+  modal.style.display = "none";
+  window.location.reload();
+};
+
+const userData = [
+  {
+    id: 53790547,
+    emp_name: "Soumyajit Mohapatra",
+    profile_img: "https://avatars.githubusercontent.com/u/30226045?s=263&v=4",
+    emp_id: 497,
+    designation: "Software Engineer",
+    barcode:
+      "https://qrcg-media.s3.eu-central-1.amazonaws.com/wp-content/uploads/2020/03/31114611/02-blog-barcode-structure.png",
+  },
+];

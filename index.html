@@ -1,4 +1,4 @@
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -6,8 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>BARCODE SCANNER APP</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+
     <style>
         body {
+            align-items: center;
+            justify-content: center;
+            display: flex;
+            flex-direction: column;
             margin: 0;
         }
 
@@ -28,37 +33,6 @@
             bottom: 26px;
             right: 153px;
             margin: 0;
-        }
-    </style>
-</head>
-
-<body>
-    <div style="height: 100vh;">
-        <canvas id="canvas"></canvas>
-        <video id="video" autoplay></video>
-        
-        <button id="capture">CAPTURE</button>
-    </div>
-    <script src="./index.js" async></script>
-</body>
-
-</html> -->
-
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>BARCODE SCANNER APP</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-    <style>
-        body {
-            align-items: center;
-            justify-content: center;
-            display: flex;
-            flex-direction: column;
         }
 
         /* The Modal (background) */
@@ -172,14 +146,12 @@
 </head>
 
 <body>
-    <h1 style="text-align: center">BARCODE SCANNER APP v1.32</h1>
-    <canvas id="canvas" class="canvas"></canvas>
-    <video id="video" autoplay></video>
-    <button id="capture">CAPTURE</button>
-    <!-- The Modal -->
+    <div style="height: 100vh;">
+        <canvas id="canvas"></canvas>
+        <video id="video" autoplay></video>
+        <button id="capture">CAPTURE</button>
+    </div>
     <div id="myModal" class="modal">
-
-        <!-- Modal content -->
         <div class="modal-content">
             <img id="img" />
             <h3 id="empName"></h3>
