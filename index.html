@@ -17,15 +17,21 @@
         }
 
         #canvas {
-            min-width: 100%;
-            min-height: 100%;
+            width: 100%;
+            height: 100%;
             margin: 0;
         }
 
         #video {
-            min-width: 100%;
-            min-height: 100%;
+            width: 100%;
+            height: 100%;
             margin: 0;
+        }
+
+        #container {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
         }
 
         #capture {
@@ -158,8 +164,10 @@
 
 <body>
     <div style="height: 100vh;">
-        <canvas id="canvas"></canvas>
-        <video id="video" autoplay></video>
+        <div id="container">
+            <canvas id="canvas"></canvas>
+            <video id="video" autoplay></video>
+        </div>
 
         <button id="capture"></button>
     </div>
