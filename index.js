@@ -1,3 +1,31 @@
+//////MODAL
+// Get the modal
+const modal = document.getElementById("myModal");
+modal.style.display = "none";
+
+// Get the <span> element that closes the modal
+const close = document.getElementsByClassName("close")[0];
+
+const empName = document.getElementById("empName");
+const degi = document.getElementById("degi");
+const img = document.getElementById("img");
+const barcode = document.getElementById("barcode");
+
+const openModal = (modalData) => {
+  setTimeout(() => {
+    empName.innerHTML = `${modalData?.emp_name} (${modalData?.emp_id})`;
+    img.src = modalData?.profile_img;
+    barcode.src = modalData?.barcode;
+    degi.innerHTML = modalData?.designation;
+    modal.style.display = "block";
+  }, 1000);
+};
+close.onclick = function () {
+  modal.style.display = "none";
+  window.location.reload();
+};
+
+///////SCANNER
 let stream;
 let capturing = true;
 const videoElem = document.querySelector("#video");
@@ -69,33 +97,6 @@ function step(capturer) {
       .finally(() => stream.getTracks().forEach((track) => track.stop()));
   });
 }
-
-//Modal
-const modal = document.getElementById("myModal");
-modal.style.display = "none";
-
-// Get the <span> element that closes the modal
-const close = document.getElementsByClassName("close")[0];
-
-const empName = document.getElementById("empName");
-const degi = document.getElementById("degi");
-const img = document.getElementById("img");
-const barcode = document.getElementById("barcode");
-
-const openModal = (modalData) => {
-  setTimeout(() => {
-    empName.innerHTML = `${modalData?.emp_name} (${modalData?.emp_id})`;
-    img.src = modalData?.profile_img;
-    barcode.src = modalData?.barcode;
-    degi.innerHTML = modalData?.designation;
-    modal.style.display = "block";
-  }, 2000);
-};
-
-close.onclick = function () {
-  modal.style.display = "none";
-  window.location.reload();
-};
 
 const userData = [
   {
