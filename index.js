@@ -139,17 +139,8 @@ function step(capturer) {
   console.log(capturer);
   capturer.grabFrame().then((bitmap) => {
     let ctx = canvas.getContext("2d");
-    ctx.drawImage(
-      videoElem,
-      0,
-      0,
-      videoElem.width,
-      videoElem.height,
-      0,
-      0,
-      canvas.width,
-      canvas.height
-    );
+    ctx.drawImage(videoElem, 0, 0, canvas.width, canvas.height);
+
     const barcodeDetector = new BarcodeDetector();
     barcodeDetector
       .detect(bitmap)
