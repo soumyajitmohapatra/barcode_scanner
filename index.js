@@ -22,6 +22,7 @@ const startVideo = () => {
     };
 
     stream = await navigator.mediaDevices.getUserMedia(constrains);
+
     videoElem.onplaying = () =>
       console.log("video playing stream:", videoElem.srcObject);
     videoElem.srcObject = stream;
@@ -43,10 +44,8 @@ capBtn.onclick = () => {
     canvas
       .getContext("2d")
       .drawImage(videoElem, 0, 0, canvas.width, canvas.height);
-
     canvas.style.display = "block";
     videoElem.style.display = "none";
-    // stream.getTracks().forEach((track) => track.stop());
   }
 };
 function step(capturer) {
@@ -65,6 +64,6 @@ function step(capturer) {
       .catch((e) => {
         console.error(e.message);
       })
-      .finally(() => console.log("called"));
+      .finally(() => stream.getTracks().forEach((track) => track.stop()));
   });
 }
