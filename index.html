@@ -150,6 +150,7 @@
                 // Handle on success condition with the decoded message.
                 console.log(`Scan result ${decodedText}`, decodedResult);
             }
+            resultContainer.innerHTML = decodedText
         }
 
         var html5QrcodeScanner = new Html5QrcodeScanner(
