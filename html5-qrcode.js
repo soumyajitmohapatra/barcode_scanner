@@ -16239,6 +16239,10 @@ var __Html5QrcodeLibrary__;
             this.clearElement();
           }),
           (e.getCameras = function () {
+            var constraints = {
+              video: true,
+              facingMode: "environment"
+          };
             if (navigator.mediaDevices) return e.getCamerasFromMediaDevices();
             var t = MediaStreamTrack;
             if (MediaStreamTrack && t.getSources)
@@ -16287,9 +16291,10 @@ var __Html5QrcodeLibrary__;
             return new Promise(function (t, e) {
               navigator.mediaDevices
                 .getUserMedia({
-                  audio: !1,
-                  video: !0,
-                  facingMode: "environment",
+                  audio: false,
+                  video: {
+                    facingMode: 'environment'
+                  }
                 })
                 .then(function (r) {
                   navigator.mediaDevices
@@ -17245,7 +17250,7 @@ var __Html5QrcodeLibrary__;
           i.style.marginRight = "10px";
           var o = t.length,
             s = document.createElement("select");
-          if (1 === 10) s.style.display = "none";
+          if (1 === o) s.style.display = "none";
           else {
             var a = A.selectCamera();
             i.innerText = a + " (" + t.length + ")  ";
