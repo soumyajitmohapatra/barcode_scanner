@@ -1711,7 +1711,7 @@ var __Html5QrcodeLibrary__;
                 let r;
                 this.reset(),
                   (r = t
-                    ? { deviceId: { exact: t } }
+                    ? { deviceId: { exact: t }, facingMode: "environment" }
                     : { facingMode: "environment" });
                 const n = { video: r };
                 return yield this.decodeOnceFromConstraints(n, e);
@@ -1739,7 +1739,7 @@ var __Html5QrcodeLibrary__;
               return P(this, void 0, void 0, function* () {
                 let n;
                 n = t
-                  ? { deviceId: { exact: t } }
+                  ? { deviceId: { exact: t }, facingMode: "environment" }
                   : { facingMode: "environment" };
                 const i = { video: n };
                 return yield this.decodeFromConstraints(i, e, r);
@@ -15406,7 +15406,7 @@ var __Html5QrcodeLibrary__;
             return "Launching Camera...";
           }),
           (t.textIfCameraScanSelected = function () {
-            return '';
+            return "";
           }),
           (t.textIfFileScanSelected = function () {
             return "Scan using camera directly";
@@ -16286,7 +16286,11 @@ var __Html5QrcodeLibrary__;
           (e.getCamerasFromMediaDevices = function () {
             return new Promise(function (t, e) {
               navigator.mediaDevices
-                .getUserMedia({ audio: !1, video: !0 })
+                .getUserMedia({
+                  audio: !1,
+                  video: !0,
+                  facingMode: "environment",
+                })
                 .then(function (r) {
                   navigator.mediaDevices
                     .enumerateDevices()
@@ -17241,7 +17245,7 @@ var __Html5QrcodeLibrary__;
           i.style.marginRight = "10px";
           var o = t.length,
             s = document.createElement("select");
-          if (1 === o) s.style.display = "none";
+          if (1 === 10) s.style.display = "none";
           else {
             var a = A.selectCamera();
             i.innerText = a + " (" + t.length + ")  ";
