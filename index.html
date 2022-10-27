@@ -1,4 +1,4 @@
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -6,8 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>BARCODE SCANNER APP</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
+    <script src="./html5-qrcode.js"></script>
     <style>
         body {
             align-items: center;
@@ -95,19 +94,51 @@
             text-decoration: none;
             cursor: pointer;
         }
+
+        #qr-reader button {
+            align-items: center;
+            appearance: none;
+            background-image: radial-gradient(100% 100% at 100% 0, #5adaff 0, #5468ff 100%);
+            border: 0;
+            border-radius: 6px;
+            box-shadow: rgba(45, 35, 66, .4) 0 2px 4px, rgba(45, 35, 66, .3) 0 7px 13px -3px, rgba(58, 65, 111, .5) 0 -3px 0 inset;
+            box-sizing: border-box;
+            color: #fff;
+            cursor: pointer;
+            display: inline-flex;
+            font-family: "JetBrains Mono", monospace;
+            height: 48px;
+            justify-content: center;
+            line-height: 1;
+            list-style: none;
+            overflow: hidden;
+            padding-left: 16px;
+            padding-right: 16px;
+            position: relative;
+            text-align: left;
+            text-decoration: none;
+            transition: box-shadow .15s, transform .15s;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            white-space: nowrap;
+            will-change: box-shadow, transform;
+            font-size: 18px;
+        }
     </style>
 </head>
 
 <body>
     <div style="height: 100vh;">
-        <div id="container">
+        <!-- <div id="container">
             <canvas id="canvas"></canvas>
             <video id="video" autoplay></video>
-        </div>
+        </div> -->
+        <div id="qr-reader" style="width:375px"></div>
 
-        <div style="display: flex;align-items: center;justify-content: center; bottom: 4rem; position: relative;">
+        <!-- <div style="display: flex;align-items: center;justify-content: center; bottom: 4rem; position: relative;">
             <button id="capture"></button>
-        </div>
+        </div> -->
     </div>
     <div id="myModal" class="modal">
         <div class="modal-content">
@@ -119,26 +150,6 @@
         </div>
 
     </div>
-
-    <script src="./index.js" async></script>
-</body>
-
-</html> -->
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src="./html5-qrcode.js"></script>
-</head>
-
-<body>
-    <div id="qr-reader" style="width:500px"></div>
-    <div id="qr-reader-results"></div>
     <script>
         var resultContainer = document.getElementById('qr-reader-results');
         var lastResult, countResults = 0;
@@ -155,11 +166,15 @@
 
         var html5QrcodeScanner = new Html5QrcodeScanner(
             "qr-reader", {
-                fps: 10,
-                qrbox: 250
+                fps: 60,
+                qrbox: {
+                    width: 250,
+                    height: 250
+                },
             });
         html5QrcodeScanner.render(onScanSuccess);
     </script>
+    <!-- <script src="./index.js" async></script> -->
 </body>
 
 </html>
