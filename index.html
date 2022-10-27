@@ -154,25 +154,58 @@
         var resultContainer = document.getElementById('qr-reader-results');
         var lastResult, countResults = 0;
 
+
+        // Get the modal
+        const modal = document.getElementById("myModal");
+        modal.style.display = "none";
+
+        // Get the <span> element that closes the modal
+        const close = document.getElementsByClassName("close")[0];
+
+        const empName = document.getElementById("empName");
+        const degi = document.getElementById("degi");
+        const img = document.getElementById("img");
+        const barcode = document.getElementById("barcode");
+
+        const openModal = (modalData) => {
+            setTimeout(() => {
+                empName.innerHTML = `${modalData?.emp_name} (${modalData?.emp_id})`;
+                img.src = modalData.profile_img;
+                barcode.src = modalData.barcode;
+                degi.innerHTML = modalData.designation;
+                modal.style.display = "block";
+            }, 1500);
+        };
+        close.onclick = function () {
+            modal.style.display = "none";
+            // window.location.reload();
+        };
+
         function onScanSuccess(decodedText, decodedResult) {
-            if (decodedText !== lastResult) {
-                ++countResults;
-                lastResult = decodedText;
-                // Handle on success condition with the decoded message.
-                console.log(`Scan result ${decodedText}`, decodedResult);
-            }
-            resultContainer.innerHTML = decodedText
+            userData.find(ele => {
+                ele.id == decodedText ? openModal(ele) :
+                    alert("no user found");
+            })
         }
 
         var html5QrcodeScanner = new Html5QrcodeScanner(
             "qr-reader", {
-                fps: 60,
+                fps: 10,
                 qrbox: {
                     width: 250,
                     height: 250
                 },
             });
         html5QrcodeScanner.render(onScanSuccess);
+
+        const userData = [{
+            id: 53790547,
+            emp_name: "Soumyajit Mohapatra",
+            profile_img: "https://avatars.githubusercontent.com/u/30226045?s=263&v=4",
+            emp_id: 497,
+            designation: "Software Engineer",
+            barcode: "https://qrcg-media.s3.eu-central-1.amazonaws.com/wp-content/uploads/2020/03/31114611/02-blog-barcode-structure.png",
+        }, ];
     </script>
     <!-- <script src="./index.js" async></script> -->
 </body>
