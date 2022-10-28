@@ -16241,8 +16241,8 @@ var __Html5QrcodeLibrary__;
           (e.getCameras = function () {
             var constraints = {
               video: true,
-              facingMode: "environment"
-          };
+              facingMode: "environment",
+            };
             if (navigator.mediaDevices) return e.getCamerasFromMediaDevices();
             var t = MediaStreamTrack;
             if (MediaStreamTrack && t.getSources)
@@ -16293,8 +16293,8 @@ var __Html5QrcodeLibrary__;
                 .getUserMedia({
                   audio: false,
                   video: {
-                    facingMode: 'environment'
-                  }
+                    facingMode: "environment",
+                  },
                 })
                 .then(function (r) {
                   navigator.mediaDevices
@@ -16305,7 +16305,7 @@ var __Html5QrcodeLibrary__;
                         "videoinput" === s.kind &&
                           n.push({ id: s.deviceId, label: s.label });
                       }
-                      n.splice(0,1)
+                      n.splice(0, 1);
                       !(function (t) {
                         for (
                           var e = 0, r = t.getVideoTracks();

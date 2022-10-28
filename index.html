@@ -14,37 +14,7 @@
             display: flex;
             flex-direction: column;
             margin: 0;
-        }
-
-        #canvas {
-            width: 100%;
-            height: 60%;
-            margin: 0;
-        }
-
-        #video {
-            width: 100%;
-            margin: 0;
-        }
-
-        #container {
-            width: 100%;
-            height: 85vh;
-            overflow: hidden;
-        }
-
-        #capture {
-            position: fixed;
-            margin: 0;
-            height: 80px;
-            width: 80px;
-            transition: all 0.25s ease;
-            border-radius: 50%;
-            background: rgba(0, 0, 0, 0.3);
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(4px);
-            border: 5px solid rgba(36, 36, 36, 0.58);
+            background: #c0ddf1;
         }
 
         @keyframes fadein {
@@ -119,26 +89,74 @@
             text-decoration: none;
             transition: box-shadow .15s, transform .15s;
             user-select: none;
-            -webkit-user-select: none;
             touch-action: manipulation;
             white-space: nowrap;
-            will-change: box-shadow, transform;
             font-size: 18px;
+            margin-top: 3rem;
+        }
+
+        #qr-reader {
+            display: flex;
+            flex: 8;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .footer {
+            background: #232526;
+            background: -webkit-linear-gradient(to right, #414345, #232526);
+            background: linear-gradient(to right, #414345, #232526);
+            display: flex;
+            justify-content: center;
+            height: 4rem;
+            align-items: center;
+
+        }
+
+        .container {
+            height: 100vh;
+            flex-direction: column;
+            display: flex;
+            justify-content: center;
+        }
+
+        .fallback h1 {
+            display: none;
+        }
+
+        @media (min-width:480px) {
+            .container {
+                display: none;
+            }
+
+            .fallback h1 {
+                display: block;
+                text-align: center;
+            }
+        }
+
+        @media (orientation: landscape) {
+            .container {
+                display: none;
+            }
+
+            .fallback h1 {
+                display: block;
+                text-align: center;
+            }
         }
     </style>
 </head>
 
 <body>
-    <div style="height: 100vh;">
-        <!-- <div id="container">
-            <canvas id="canvas"></canvas>
-            <video id="video" autoplay></video>
-        </div> -->
-        <div id="qr-reader" style="width:375px"></div>
-
-        <!-- <div style="display: flex;align-items: center;justify-content: center; bottom: 4rem; position: relative;">
-            <button id="capture"></button>
-        </div> -->
+    <div class="fallback">
+        <h1>This app is only accessible via mobile devices.</h1>
+    </div>
+    <div class="container">
+        <div id="qr-reader" style="width: 100vw;"></div>
+        <div class="footer">
+            <img height="40" width="125" src="https://erp.silicon.ac.in/estcampus/images/logo/SITBBS.jpg" />
+        </div>
     </div>
     <div id="myModal" class="modal">
         <div class="modal-content">
