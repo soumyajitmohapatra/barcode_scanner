@@ -202,7 +202,7 @@
         function onScanSuccess(decodedText, decodedResult) {
             userData.find(ele => {
                 ele.id == decodedText ? openModal(ele) :
-                    alert("no user found");
+                    alert("User not found");
             })
         }
 
