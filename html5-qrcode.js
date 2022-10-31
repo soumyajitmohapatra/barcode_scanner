@@ -16684,10 +16684,10 @@ var __Html5QrcodeLibrary__;
               var o = (e - n.width) / 2,
                 s = (r - n.height) / 2;
               if (
-                ((i.style.borderLeft = o + "px solid rgba(0, 0, 0, 0.48)"),
-                (i.style.borderRight = o + "px solid rgba(0, 0, 0, 0.48)"),
-                (i.style.borderTop = s + "px solid rgba(0, 0, 0, 0.48)"),
-                (i.style.borderBottom = s + "px solid rgba(0, 0, 0, 0.48)"),
+                ((i.style.borderLeft = "40px solid rgba(0, 0, 0, 0.48)"),
+                (i.style.borderRight = "40px solid rgba(0, 0, 0, 0.48)"),
+                (i.style.borderTop = "50px solid rgba(0, 0, 0, 0.48)"),
+                (i.style.borderBottom = "50px solid rgba(0, 0, 0, 0.48)"),
                 (i.style.boxSizing = "border-box"),
                 (i.style.top = "0px"),
                 (i.style.bottom = "0px"),
