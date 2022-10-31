@@ -200,11 +200,10 @@
         };
 
         function onScanSuccess(decodedText, decodedResult) {
-            alert(decodedText)
-            // userData.find(ele => {
-            //     ele.id == decodedText ? openModal(ele) :
-            //         alert("no user found");
-            // })
+            userData.find(ele => {
+                ele.id == decodedText ? openModal(ele) :
+                    alert("no user found");
+            })
         }
 
         var html5QrcodeScanner = new Html5QrcodeScanner(
