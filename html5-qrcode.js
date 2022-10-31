@@ -16305,7 +16305,7 @@ var __Html5QrcodeLibrary__;
                         "videoinput" === s.kind &&
                           n.push({ id: s.deviceId, label: s.label });
                       }
-                      n.splice(0, 1);
+                      // n.splice(0, 1);
                       !(function (t) {
                         for (
                           var e = 0, r = t.getVideoTracks();
@@ -16681,13 +16681,13 @@ var __Html5QrcodeLibrary__;
             if (!(e - n.width < 1 || r - n.height < 1)) {
               var i = document.createElement("div");
               i.style.position = "absolute";
-              var o = (e - n.width) / 2,
-                s = (r - n.height) / 2;
+              var o = (e - n.width) / 3.5,
+                s = (r - n.height) / 0.7;
               if (
-                ((i.style.borderLeft = "40px solid rgba(0, 0, 0, 0.48)"),
-                (i.style.borderRight = "40px solid rgba(0, 0, 0, 0.48)"),
-                (i.style.borderTop = "50px solid rgba(0, 0, 0, 0.48)"),
-                (i.style.borderBottom = "50px solid rgba(0, 0, 0, 0.48)"),
+                ((i.style.borderLeft = o + "px solid rgba(0, 0, 0, 0.48)"),
+                (i.style.borderRight = o + "px solid rgba(0, 0, 0, 0.48)"),
+                (i.style.borderTop = s + "px solid rgba(0, 0, 0, 0.48)"),
+                (i.style.borderBottom = s + "px solid rgba(0, 0, 0, 0.48)"),
                 (i.style.boxSizing = "border-box"),
                 (i.style.top = "0px"),
                 (i.style.bottom = "0px"),
