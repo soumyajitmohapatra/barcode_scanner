@@ -16681,8 +16681,8 @@ var __Html5QrcodeLibrary__;
             if (!(e - n.width < 1 || r - n.height < 1)) {
               var i = document.createElement("div");
               i.style.position = "absolute";
-              var o = (e - n.width) / 3.5,
-                s = (r - n.height) / 0.7;
+              var o = (e - n.width) / 1.5,
+                s = (r - n.height) / 3;
               if (
                 ((i.style.borderLeft = o + "px solid rgba(0, 0, 0, 0.48)"),
                 (i.style.borderRight = o + "px solid rgba(0, 0, 0, 0.48)"),
