@@ -16304,7 +16304,7 @@ var __Html5QrcodeLibrary__;
                         "videoinput" === s.kind &&
                           n.push({ id: s.deviceId, label: s.label });
                       }
-                      n.splice(0, 1);
+                      // n.splice(0, 1);
                       !(function (t) {
                         for (
                           var e = 0, r = t.getVideoTracks();
