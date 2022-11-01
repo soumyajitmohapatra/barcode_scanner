@@ -179,14 +179,14 @@
             <img id="img" style="border-radius: 50%;" height="110" width="110" />
             <h3 id="empName"></h3>
             <h3 id="degi"></h3>
-            <button id="close">&times;Close</button>
+            <button id="close" class="close">&times;Close</button>
         </div>
     </div>
     <div id="noDataModal" class="modal">
         <div class="no-data-modal">
             <h1 id="noData" style="font-size: 22px;">
             </h1>
-            <button id="close">&times;CLOSE</button>
+            <button id="errModalClose" class="close">&times;CLOSE</button>
         </div>
     </div>
     <script>
@@ -230,7 +230,9 @@
         noDataModal.style.display = 'none'
 
         // Get the <span> element that closes the modal
-        const close = document.getElementById("close");
+        const closeBtn = document.getElementById("close");
+        const errModalClose = document.getElementById("errModalClose");
+
 
         const empName = document.getElementById("empName");
         const degi = document.getElementById("degi");
@@ -246,12 +248,10 @@
                 console.log('if')
             }, 1500);
         };
-        close.onclick = function () {
-            console.log('click')
-            modal.style.display = "none";
-            noDataModal.style.display = "none"
-            window.location.reload();
-        };
+        const reload = () => window.location.reload();
+        errModalClose.onclick = () => reload()
+        closeBtn.onclick = () => reload()
+
 
         const openError = (error) => {
             setTimeout(() => {
