@@ -200,10 +200,11 @@
         };
 
         function onScanSuccess(decodedText, decodedResult) {
-            userData.find(ele => {
-                ele.id == decodedText ? openModal(ele) :
-                    setTimeout(() => alert("User not found"), 1500)
-            })
+            console.log(decodedText)
+            // userData.find(ele => {
+            //     ele.id == decodedText ? openModal(ele) :
+            //         setTimeout(() => alert("User not found"), 1500)
+            // })
         }
 
         var html5QrcodeScanner = new Html5QrcodeScanner(
@@ -215,6 +216,7 @@
                 },
             });
         html5QrcodeScanner.render(onScanSuccess);
+        
 
         const userData = [{
             id: 53790547,

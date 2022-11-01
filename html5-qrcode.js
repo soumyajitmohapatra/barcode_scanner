@@ -15577,14 +15577,14 @@ var __Html5QrcodeLibrary__;
             throw "Use html5qrcode.min.js without edit, Use BarcodeDetectorDelegate only if it isSupported();";
           (this.verbose = n), (this.logger = i);
           var o = this.createBarcodeDetectorFormats(r);
-          if (((this.detector = new BarcodeDetector(o)), !this.detector))
+          if (((this.detector = new BarcodeDetector()), !this.detector))
             throw "BarcodeDetector detector not supported";
         }
         return (
           (e.isSupported = function () {
             return (
               "BarcodeDetector" in window &&
-              void 0 !== new BarcodeDetector({ formats: ["qr_code"] })
+              void 0 !== new BarcodeDetector()
             );
           }),
           (e.prototype.decodeAsync = function (t) {
