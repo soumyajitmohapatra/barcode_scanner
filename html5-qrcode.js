@@ -15583,8 +15583,7 @@ var __Html5QrcodeLibrary__;
         return (
           (e.isSupported = function () {
             return (
-              "BarcodeDetector" in window &&
-              void 0 !== new BarcodeDetector()
+              "BarcodeDetector" in window && void 0 !== new BarcodeDetector()
             );
           }),
           (e.prototype.decodeAsync = function (t) {
@@ -16305,7 +16304,7 @@ var __Html5QrcodeLibrary__;
                         "videoinput" === s.kind &&
                           n.push({ id: s.deviceId, label: s.label });
                       }
-                      n.splice(0, 1);
+                      // n.splice(0, 1);
                       !(function (t) {
                         for (
                           var e = 0, r = t.getVideoTracks();

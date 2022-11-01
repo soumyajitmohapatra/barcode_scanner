@@ -50,19 +50,35 @@
             flex-direction: column;
         }
 
-        /* The Close Button */
-        .close {
-            color: #aaaaaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
+        .no-data-modal {
+            width: 300px;
+            height: 200px;
+            margin: 0 auto;
+            justify-content: center;
+            align-items: center;
+            display: flex;
+            flex-direction: column;
+            padding: 1rem;
+            border-radius: 1rem;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 50%;
+            -webkit-transform: translateY(-50%);
+            -moz-transform: translateY(-50%);
+            -ms-transform: translateY(-50%);
+            -o-transform: translateY(-50%);
+            transform: translateY(-50%);
+            background-color: #fefefe;
         }
 
-        .close:hover,
-        .close:focus {
-            color: #000;
-            text-decoration: none;
-            cursor: pointer;
+        /* The Close Button */
+        .close {
+            color: #696666;
+            font-size: 28px;
+            font-weight: bold;
+            border-radius: 7px;
+            margin-top: 1rem;
         }
 
         #qr-reader button {
@@ -166,16 +182,20 @@
             <img id="barcode" height="150" width="500" />
             <button class="close">&times;Close</button>
         </div>
-
+    </div>
+    <div id="noDataModal" class="modal">
+        <div class="no-data-modal">
+            <div id="noData" style="font-size: 22px;">
+            </div>
+            <button class="close">&times;CLOSE</button>
+        </div>
     </div>
     <script>
-        var resultContainer = document.getElementById('qr-reader-results');
-        var lastResult, countResults = 0;
-
-
         // Get the modal
         const modal = document.getElementById("myModal");
         modal.style.display = "none";
+        const noDataModal = document.getElementById("noDataModal");
+        noDataModal.style.display = 'none'
 
         // Get the <span> element that closes the modal
         const close = document.getElementsByClassName("close")[0];
@@ -185,38 +205,45 @@
         const img = document.getElementById("img");
         const barcode = document.getElementById("barcode");
 
+        const noData = document.getElementById('noData')
         const openModal = (modalData) => {
             setTimeout(() => {
-                empName.innerHTML = `${modalData?.emp_name} (${modalData?.emp_id})`;
-                img.src = modalData.profile_img;
-                barcode.src = modalData.barcode;
-                degi.innerHTML = modalData.designation;
-                modal.style.display = "block";
+                if (typeof modalData == "object") {
+                    empName.innerHTML = `${modalData?.emp_name} (${modalData?.emp_id})`;
+                    img.src = modalData.profile_img;
+                    barcode.src = modalData.barcode;
+                    degi.innerHTML = modalData.designation;
+                    modal.style.display = "block";
+                } else {
+                    const noResult = document.createTextNode(`No Result found for ${modalData}`);
+                    noData.appendChild(noResult)
+                    noDataModal.style.display = "block"
+                }
             }, 1500);
         };
         close.onclick = function () {
             modal.style.display = "none";
+            noDataModal.style.display = "none"
             window.location.reload();
         };
 
         function onScanSuccess(decodedText, decodedResult) {
-            console.log(decodedText)
-            // userData.find(ele => {
-            //     ele.id == decodedText ? openModal(ele) :
-            //         setTimeout(() => alert("User not found"), 1500)
-            // })
+            userData.find(ele => {
+                ele.id == decodedText ? openModal(ele) :
+                    openModal(decodedText)
+            })
         }
 
         var html5QrcodeScanner = new Html5QrcodeScanner(
             "qr-reader", {
-                fps: 10,
+                fps: 30,
                 qrbox: {
                     width: 250,
-                    height: 250
+                    height: 200
                 },
             });
         html5QrcodeScanner.render(onScanSuccess);
-        
+
 
         const userData = [{
             id: 53790547,
